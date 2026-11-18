@@ -78,18 +78,31 @@ How do you bring the gold back to the source?*/
     
     private:
         int exploreDFSHelper(int v, vector<bool>&  visited, int goldVertex){
+            if (v == goldVertex){
+                for (auto it : visited){
+                    it = true;
+                }
+                cout << "Found gold at vertex " << v << endl;
+                return collectGold();
+            }
             // recursive depth first search
             // Visit v
             visited[v] = true;
+            int gold = 0;
             cout << "Visited vertex " << v << endl;
             for (auto w : adjList[v]){
                 if(!visited[w]){
-                    exploreDFSHelper(w, visited);
+                    int g = exploreDFSHelper(w, visited, goldVertex);
+                    if (g != 0){
+                        cout << "Vertex " << v << " knows that gold is " << g << endl;
+                        gold = g;
+                    }
                     cout << "Coming back to " << v << " from " << w << endl;
                 }
             }
             cout << "Leaving vertex " << v << endl;
-         }
+            return gold;
+        }
         // Adjacency list
         vector<unordered_set<int>> adjList;
 
