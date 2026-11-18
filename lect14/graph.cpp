@@ -6,6 +6,12 @@
 
 using namespace std;
 
+/* Puzzle : Get back the gold! 
+Given a graph G = (V, E) and a source vertex (s). 
+Somewhere deeper in the graph is gold at some vertex (u).
+You only learn its value when you reach that vertex.
+How do you bring the gold back to the source?*/
+
 class Graph{
     public:
         Graph(int n){
