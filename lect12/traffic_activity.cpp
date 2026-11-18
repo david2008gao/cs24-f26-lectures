@@ -23,6 +23,7 @@ vector<string> traffic_log = {
 // Data structures for fast insertion and fast search: BST: std::set 
 // insert: O(log n), search : O(log n)
 // hashtable: unordered_set: insertions O(1) --- average , search -- O(1) --average
+// No worst case guarantees!!!O(n)
 // ============================================================
 // Part A: How many unique visitors?
 // Use: unordered_set
@@ -30,8 +31,11 @@ vector<string> traffic_log = {
 // ============================================================
 int uniqueVisitors(const vector<string>& log) {
     // TODO: Your code here
-
-    return 42;
+    unordered_set<string> unique_ips; // hashtable -- only stores the keys.
+    for (auto ip : log){
+        unique_ips.insert(ip); // O(1) on average
+    }
+    return unique_ips.size();
 }
 
 // ============================================================
@@ -46,6 +50,14 @@ int uniqueVisitors(const vector<string>& log) {
 // ============================================================
 unordered_map<string, int> countVisits(const vector<string>& log) {
     // TODO: Your code here
+    unordered_map<string, int> ipcount; // hashtable that stores key-value pairs
+    // ipcount["10.0.0.5"] = 4;
+    // cout << ipcount["10.0.0.5"] << endl;
+    // cout << ipcount.size() << endl;
+    for (auto ip: log){
+        ipcount[ip]++;  // if ip doesn't exist it will insert it into the hashtable with count 0
+    }
+    return ipcount;
 
 }
 
@@ -78,6 +90,10 @@ int main() {
         cout << ip << ": " << count << endl;
     }
     cout << endl;
+
+     for (const auto& e : counts) {
+        cout << e.first << ": " << e.second << endl;
+    }
 
     // Part C, reuses the counts map from Part B
     cout << "=== Part C: Top 3 Visitors ===" << endl;
