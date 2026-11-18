@@ -60,15 +60,24 @@ class Graph{
             }
 
         }
+// Go ahead and get the code for today's lecture!
+/* Puzzle : Get back the gold! 
+Given a graph G = (V, E) and a source vertex (s). 
+Somewhere deeper in the graph is gold at some vertex (goldVertex).
+You only learn its value when you reach that vertex.
+How do you bring the gold back to the source?*/
+        int collectGold(){
+            return 42; // return gold!!
+        }
 
-        void exploreDFS(int v){
+        int exploreDFS(int v, int goldVertex){
             // Keep track of what has already been explored
             vector<bool> visited(adjList.size(), false);
-            exploreDFSHelper(v, visited);
+            return exploreDFSHelper(v, visited, goldVertex);
         }
     
     private:
-        void exploreDFSHelper(int v, vector<bool>&  visited){
+        int exploreDFSHelper(int v, vector<bool>&  visited, int goldVertex){
             // recursive depth first search
             // Visit v
             visited[v] = true;
@@ -123,8 +132,8 @@ int main(int argc, char const *argv[])
     cout << endl;
 
     cout << "Depth Frist Traversal" << endl;
-
-    g.exploreDFS(0);
-    cout << endl;
+    int goldVertex = 5;
+    int gold = g.exploreDFS(0, goldVertex);
+    cout << "Got the gold back at 0 " << gold << endl;
     return 0;
 }
