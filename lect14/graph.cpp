@@ -8,7 +8,7 @@ using namespace std;
 
 /* Puzzle : Get back the gold! 
 Given a graph G = (V, E) and a source vertex (s). 
-Somewhere deeper in the graph is gold at some vertex (u).
+Somewhere deeper in the graph is gold at some vertex (goldVertex).
 You only learn its value when you reach that vertex.
 How do you bring the gold back to the source?*/
 
@@ -20,7 +20,7 @@ class Graph{
 
         void addEdge(int source, int dest){
             adjList[source].insert(dest); // insert directed edge for a directed graph only do this
-            adjList[dest].insert(source);  // for a undirected graph , also add this line
+           // adjList[dest].insert(source);  // for a undirected graph , also add this line
 
         }
 
