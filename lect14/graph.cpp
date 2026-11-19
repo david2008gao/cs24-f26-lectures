@@ -81,14 +81,21 @@ How do you bring the gold back to the source?*/
             // recursive depth first search
             // Visit v
             visited[v] = true;
+            if (v == goldVertex){
+                return collectGold();
+            }
             cout << "Visited vertex " << v << endl;
             for (auto w : adjList[v]){
                 if(!visited[w]){
-                    exploreDFSHelper(w, visited);
+                    int result = exploreDFSHelper(w, visited, goldVertex);
+                    if (result != -1){
+                        return result;
+                    }
                     cout << "Coming back to " << v << " from " << w << endl;
                 }
             }
             cout << "Leaving vertex " << v << endl;
+            return -1;
          }
         // Adjacency list
         vector<unordered_set<int>> adjList;
@@ -134,6 +141,6 @@ int main(int argc, char const *argv[])
     cout << "Depth Frist Traversal" << endl;
     int goldVertex = 5;
     int gold = g.exploreDFS(0, goldVertex);
-    cout << "Got the gold back at 0 " << gold << endl;
+    cout << "Got the gold back at 0 with value: " << gold << endl;
     return 0;
 }
